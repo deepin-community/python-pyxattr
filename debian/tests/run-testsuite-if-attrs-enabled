@@ -1,0 +1,17 @@
+#!/bin/sh
+
+TESTFILE="$AUTOPKGTEST_TMP/foo"
+
+touch "$TESTFILE"
+
+if setfattr -n user.foo -v bar "$TESTFILE"; then
+  echo "Temporary directory '$AUTOPKGTEST_TMP' has extended attributes, running tests"
+  export TEST_DIR="$AUTOPKGTEST_TMP"
+  echo "* testing Python 3"
+  python3 tests/test_xattr.py
+  echo "* testing Python 3 debug package"
+  python3-dbg tests/test_xattr.py
+else
+  echo "Temporary directory '$AUTOPKGTEST_TMP' doesn't have extended attributes enabled"
+  echo "Skipping the tests :("
+fi

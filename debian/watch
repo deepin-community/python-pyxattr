@@ -1,0 +1,6 @@
+# format version number, currently 4; this line is compulsory!
+version=4
+
+# the package is located on my own site, github deprecated downloads
+opts=pgpsigurlmangle=s/$/.asc/ \
+  https://pyxattr.k1024.org/downloads/pyxattr-(.+).tar.gz

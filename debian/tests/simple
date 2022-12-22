@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# switch directory into temp dir to ensure we don't try to use the
+# 'xattr.so' from the source package (if autopkgtest has built the
+# package):
+cd "$AUTOPKGTEST_TMP/"
+
+# and now simply import the modules:
+python3 -c 'import xattr; print(xattr); print(xattr.__version__)'
+python3-dbg -c 'import xattr; print(xattr); print(xattr.__version__)'

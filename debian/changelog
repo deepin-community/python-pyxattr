@@ -1,0 +1,193 @@
+python-pyxattr (0.7.2-1) UNRELEASED; urgency=medium
+
+  * update
+
+ -- Iustin Pop <iustin@debian.org>  Tue, 17 May 2022 22:01:25 -0400
+
+python-pyxattr (0.7.2-1) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Bump debhelper from old 11 to 12.
+  * Set debhelper-compat version in Build-Depends.
+  * Fix field name typos in debian/copyright.
+
+  [ Iustin Pop ]
+  * New upstream version, officially dropping Python 2 support, which
+    allows better compatibility with Python 3, e.g. Path objects support.
+  * Minor refresh of packaging (debhelper compat, standards version, watch
+    file version, etc.).
+  * Drop the easy-doc patch, it is actually harmful.
+
+ -- Iustin Pop <iustin@debian.org>  Sun, 29 Nov 2020 21:28:46 +0100
+
+python-pyxattr (0.6.1-2) unstable; urgency=medium
+
+  * Drop python2 support; Closes: #938107
+  * debian/patches/easy-doc.patch
+    - remove dependency between building ext and building doc
+
+ -- Sandro Tosi <morph@debian.org>  Tue, 17 Mar 2020 12:25:10 -0400
+
+python-pyxattr (0.6.1-1) unstable; urgency=medium
+
+  * New upstream release, with two changes that affect Linux and Debian:
+    - Drop the use of the `attr` library, and instead switch to the glibc
+      header `sys/xattr.h`, which is provided for a really long time now
+      (since glibc 2.3)
+    - Release the GIL when performing I/O, which can improve performance
+      significantly on network or slow filesystems; slowdown on fast
+      filesystems should be minimal (0-5%, in many cases negligible)
+  * Usual updates to the debian packaging (new standards version, added
+    rules-requires-root: no, debhelper compat version, etc.)
+
+ -- Iustin Pop <iustin@debian.org>  Mon, 29 Oct 2018 21:45:20 +0100
+
+python-pyxattr (0.6.0-2) unstable; urgency=medium
+
+  * Fixup building on hurd and kfreebsd; while neither of these
+    architectures have proper xattr support, the package was present and
+    importable on them previously (and hurd has some very basic support
+    for xattrs)
+
+ -- Iustin Pop <iustin@debian.org>  Thu, 26 Jan 2017 00:30:55 +0100
+
+python-pyxattr (0.6.0-1) unstable; urgency=medium
+
+  * New upstream release, mainly fixing a race condition when
+    listing/reading attributes during concurrent modifications (which
+    required internal changes, see the NEWS file), and OSX support (not
+    impacting Debian)
+  * Fixup autopkgtests to also work when building the packages
+
+ -- Iustin Pop <iustin@debian.org>  Mon, 23 Jan 2017 23:35:45 +0100
+
+python-pyxattr (0.5.6-1) unstable; urgency=medium
+
+  * Imported Upstream versions 0.5.4, 0.5.5 and 0.5.6; main changes:
+    - fix multiple memory leaks in error handling paths
+    - improve error message in case attributes disappear during retrieval
+    - fix actual int/size_t issues (https://bugzilla.redhat.com/1127310)
+    - fix potential sign-compare issues (code is -Wconversion clean now)
+    - fix potential name truncation in merge_ns()
+    - fix building on systems which don't have ENODATA
+  * Improve hardening of the package (all except pie, which breaks the
+    build)
+  * Migrate debian/copyright to DEP5-style
+  * Switch debian packaging repo over to Alioth
+  * Switch build system to dh and pybuild
+  * Split the documentation into a separate package (Closes: #725419);
+    note that the path to the documentation has now changed
+  * Add autopkgtest testsuite; this would have helped the issue found by
+    RedHat much earlier, since Debian runs on more platforms
+
+ -- Iustin Pop <iustin@debian.org>  Sat, 14 May 2016 23:31:34 +0200
+
+python-pyxattr (0.5.3-2) unstable; urgency=medium
+
+  * Fix building with Sphinx 1.3 (Closes: #787848).
+
+ -- Iustin Pop <iustin@debian.org>  Mon, 29 Jun 2015 21:37:39 +0200
+
+python-pyxattr (0.5.3-1) unstable; urgency=medium
+
+  * New upstream releases: speedup, changes in handling invalid file names
+  * Standards version 3.9.5 (no changes needed)
+  * Update watch file
+
+ -- Iustin Pop <iustin@debian.org>  Mon, 21 Jul 2014 05:03:58 +0200
+
+python-pyxattr (0.5.1-1) unstable; urgency=low
+
+  * New upstream bug-fix release, fixing reference leaks and potential
+    NULL pointer dereferences in low memory cases
+  * Add python 3 packages, based on patch from Didier 'OdyX' Raboud
+    (Closes: #606898)
+
+ -- Iustin Pop <iustin@debian.org>  Wed, 16 May 2012 21:00:12 +0200
+
+python-pyxattr (0.5.0-3) unstable; urgency=low
+
+  * Remove old Replaces/Breaks
+
+ -- Iustin Pop <iustin@debian.org>  Tue, 17 Aug 2010 23:06:32 +0200
+
+python-pyxattr (0.5.0-2) unstable; urgency=low
+
+  * Apply a modified version of the Ubuntu patch for enabling debug
+    packages, thanks Angel Abad (Closes: #591634).
+  * Standards version 3.9.1 (use Breaks instead of Conflicts).
+
+ -- Iustin Pop <iustin@debian.org>  Thu, 05 Aug 2010 13:50:26 -0400
+
+python-pyxattr (0.5.0-1) unstable; urgency=low
+
+  * New upstream version
+  * Standards version 3.8.4 (no changes needed)
+  * Switch to dpkg-source 3.0 (quilt) format
+  * Added doc-base control file for the shipped documentation
+
+ -- Iustin Pop <iustin@debian.org>  Mon, 01 Mar 2010 21:29:00 +0100
+
+python-pyxattr (0.4.0-2) unstable; urgency=low
+
+  * Fix "FTBFS on GNU/kFreeBSD" (added a modified form of the submitted patch,
+    thanks Cyril Brulebois) (Closes: #540979)
+  * Update standards version (no changes needed)
+
+ -- Iustin Pop <iusty@k1024.org>  Wed, 12 Aug 2009 22:13:13 +0200
+
+python-pyxattr (0.4.0-1) unstable; urgency=low
+
+  * New Upstream Version, with license changed to LGPL
+  * Update to Policy 3.8.0
+  * Update the rules file for newer pysupport version
+  * Update debhelper compat level to 7
+  * Added watch file
+
+ -- Iustin Pop <iusty@k1024.org>  Mon, 30 Jun 2008 23:26:01 +0200
+
+python-pyxattr (0.2.2-2) unstable; urgency=low
+
+  * Upgrade standards version to 3.7.3 (no changes required)
+  * Fix other lintian warnings
+
+ -- Iustin Pop <iusty@k1024.org>  Tue, 26 Feb 2008 22:38:38 +0100
+
+python-pyxattr (0.2.2-1) unstable; urgency=low
+
+  * New upstream release (Closes: #431112)
+  * Acknowledge NMUs (thanks Pierre!) (Closes: #373348, #368616)
+
+ -- Iustin Pop <iusty@k1024.org>  Mon, 16 Jul 2007 20:58:34 +0200
+
+python-pyxattr (0.2.1-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Update package to the last python policy (Closes: #373348).
+  * Package is now arch:any (Closes: #368616).
+
+ -- Pierre Habouzit <madcoder@debian.org>  Sun,  2 Jul 2006 15:44:23 +0200
+
+python-pyxattr (0.2.1-1) unstable; urgency=low
+
+  * New upstream release (fixes a symlink handling bug
+    and a possible memory leak)
+  * Stop building python 2.2 packages (closes: #351150)
+  * Start building python 2.4 packages
+  * Updated standards version to 3.6.2 (no changes)
+  * Update FSF address in copyright file
+
+ -- Iustin Pop <iusty@k1024.org>  Sat, 11 Feb 2006 23:28:43 +0200
+
+python-pyxattr (0.2-2) unstable; urgency=low
+
+  * Fixed missing dependency on python (closes: #258484)
+  * Updates to standards version 3.6.1
+
+ -- Iustin Pop <iusty@k1024.org>  Sun, 11 Jul 2004 02:16:09 +0300
+
+python-pyxattr (0.2-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Iustin Pop <iusty@k1024.org>  Tue, 16 Sep 2003 01:27:31 +0300

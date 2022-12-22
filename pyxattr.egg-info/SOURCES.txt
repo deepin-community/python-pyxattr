@@ -1,0 +1,17 @@
+COPYING
+MANIFEST.in
+Makefile
+NEWS
+README.md
+setup.cfg
+setup.py
+xattr.c
+doc/conf.py
+doc/index.rst
+doc/module.rst
+pyxattr.egg-info/PKG-INFO
+pyxattr.egg-info/SOURCES.txt
+pyxattr.egg-info/dependency_links.txt
+pyxattr.egg-info/top_level.txt
+tests/__init__.py
+tests/test_xattr.py

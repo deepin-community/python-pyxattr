@@ -1,0 +1,37 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+export PYBUILD_NAME = pyxattr
+export PYBUILD_DISABLE = test
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all,-pie
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+%:
+	dh $@ --with python3,sphinxdoc --buildsystem=pybuild
+
+# Also build the documentation
+override_dh_auto_build:
+	dh_auto_build
+	PYTHONPATH=. http_proxy='127.0.0.1:9' make doc
+
+# ... and clean it
+override_dh_auto_clean:
+	dh_auto_clean
+	$(MAKE) clean
+
+override_dh_strip:
+	dh_strip -ppython3-pyxattr --dbg-package=python3-pyxattr-dbg
+
+override_dh_installdocs:
+	dh_installdocs --link-doc=python3-pyxattr -ppython3-pyxattr-dbg
+	dh_installdocs -A --remaining-packages README.md
+
+override_dh_installchangelogs:
+	dh_installchangelogs -A NEWS

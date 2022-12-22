@@ -1,0 +1,54 @@
+Source: python-pyxattr
+Section: python
+Priority: optional
+Maintainer: Iustin Pop <iustin@debian.org>
+Build-Depends: debhelper-compat (= 13), dh-python,
+ python3-all, python3-all-dev, python3-all-dbg,
+ python3-setuptools,
+ python3-sphinx, python3-recommonmark
+Standards-Version: 4.5.1
+Homepage: https://pyxattr.k1024.org/
+Vcs-Browser: https://salsa.debian.org/debian/python-pyxattr
+Vcs-Git: https://salsa.debian.org/debian/python-pyxattr.git
+Rules-Requires-Root: no
+
+Package: python3-pyxattr
+Architecture: any
+Depends: ${python3:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${python3:Provides}
+Suggests: python3-pyxattr-dbg, python-pyxattr-doc
+Multi-Arch: same
+Description: module for manipulating filesystem extended attributes (Python3)
+ pyxattr is a Python interface to the libattr library. It allows
+ manipulation of the filesystem extended attributes present in some
+ operating systems (GNU/Linux included).
+ .
+ This package contains the library for Python 3.
+
+Package: python3-pyxattr-dbg
+Section: debug
+Architecture: any
+Depends: python3-pyxattr (= ${binary:Version}), python3-dbg,
+ ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
+Provides: ${python3:Provides}
+Multi-Arch: same
+Description: module for manipulating filesystem extended attributes (Python3 debug version)
+ pyxattr is a Python interface to the libattr library. It allows
+ manipulation of the filesystem extended attributes present in some
+ operating systems (GNU/Linux included).
+ .
+ This package contains the library for the Python 3 debug interpreter.
+
+Package: python-pyxattr-doc
+Architecture: all
+Section: doc
+Replaces: python-pyxattr (<< 0.5.6-1)
+Breaks: python-pyxattr (<< 0.5.6-1)
+Depends: ${misc:Depends}, ${sphinxdoc:Depends}
+Multi-Arch: foreign
+Description: module for manipulating filesystem extended attributes (documentation)
+ pyxattr is a Python interface to the libattr library. It allows
+ manipulation of the filesystem extended attributes present in some
+ operating systems (GNU/Linux included).
+ .
+ This package contains the HTML documentation for the library.

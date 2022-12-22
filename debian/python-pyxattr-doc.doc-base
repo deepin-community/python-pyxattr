@@ -1,0 +1,8 @@
+Document: python-pyxattr-manual
+Title: pyxattr Manual
+Abstract: Documents the API of the Python pyxattr library
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-pyxattr-doc/html/index.html
+Files: /usr/share/doc/python-pyxattr-doc/html/*.html
