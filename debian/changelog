@@ -1,8 +1,12 @@
-python-pyxattr (0.7.2-1) UNRELEASED; urgency=medium
+python-pyxattr (0.7.2-1deepin1) unstable; urgency=medium
 
+  [ Iustin Pop ]
   * update
 
- -- Iustin Pop <iustin@debian.org>  Tue, 17 May 2022 22:01:25 -0400
+  [ Tianyu Chen ]
+  * No source change upload against python 3.12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Mon, 08 Jul 2024 09:55:55 +0200
 
 python-pyxattr (0.7.2-1) unstable; urgency=medium
 
